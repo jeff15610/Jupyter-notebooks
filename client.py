@@ -56,7 +56,7 @@ class Ndex2(object):
                            header sent with all requests to server
         :type user_agent: string
         :param timeout: The timeout in seconds value for requests to server. This value
-                        is passed to Request calls `Click here for more information
+                        is passed to Request calls `Click Here for more information
                         <http://docs.python-requests.org/en/master/user/advanced/#timeouts>`_
         :type timeout: float or tuple(float, float)
         """
@@ -322,11 +322,18 @@ class Ndex2(object):
         Create a new network (cx) on the server
        
 	 .. code-block:: python
+		
+		from ndex2.nice_cx_network import NiceCXNetwork
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
 
 		#this method  creates a new network from cx, a python dict in CX format
 
 		# Query the network from my NDEx account, get small subset in cx format
-		query_result_cx=my_ndex.get_neighborhood('c9243cce-2d32-11e8-b939-0ac135e8bacf','XRN1')
+		query_result_cx=my_ndex.get_neighborhood('INSERT NETWORK UUID HERE','INSERT NODE NAME HERE')
 
 		#this method return the URI of the subset
 		uri_subset = my_ndex.save_new_network(query_result_cx)
@@ -381,8 +388,15 @@ class Ndex2(object):
 	
 	.. code-block:: python
 	
-		node_name = 'Insert Node Name here'
-		network_uuid = 'Insert network_uuid here'
+		from ndex2.nice_cx_network import NiceCXNetwork
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
+
+		node_name = 'INSERT NODE NAME HERE'
+		network_uuid = 'INSERT NETWORK UUID HERE'
 		query_result_cx_stream = my_ndex.get_neighborhood_as_cx_stream(network_uuid, node_name)
 		#visibility is either PUBLIC or PRIVATE
 		my_ndex.save_cx_stream_as_new_network(query_result_cx_stream, visibility=PUBLIC)
@@ -426,8 +440,14 @@ class Ndex2(object):
 	
 	.. code-block:: python
 
-		cx_stream = 'Insert CX Stream'
-		network_id = 'Insert Network UUID Here'
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
+
+		cx_stream = 'INSERT CX STREAM HERE'
+		network_id = 'INSERT NETWORK UUID HERE'
 		my_ndex.update_cx_network(cx_stream, network_id)
 
         :param cx_stream: The network stream.
@@ -457,8 +477,16 @@ class Ndex2(object):
 
 	.. code-block:: python
 
+		from ndex2.nice_cx_network import NiceCXNetwork
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
+		import json
+
 		#this method returns the network specified by network_id as a CX byte stream
-		response = my_ndex.get_network_as_cx_stream('c9243cce-2d32-11e8-b939-0ac135e8bacf')
+		response = my_ndex.get_network_as_cx_stream('INSERT NETWORK UUID HERE')
 
 		#this returns a json object, which is a list of dict
 		raw_cx = response.json()
@@ -525,7 +553,15 @@ class Ndex2(object):
 
         .. code-block:: python
 
-		network_uuid = 'Insert Network UUID Here'
+		from ndex2.nice_cx_network import NiceCXNetwork
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
+		import json
+
+		network_uuid = 'INSERT NETWORK UUID HERE'
 		server = 'public.ndexbio.org'
 		nice_cx_network = ndex2.create_nice_cx_from_server(server=server, uuid=network_uuid)
 		for node_id, node in nice_cx_network.get_nodes():
@@ -568,8 +604,15 @@ class Ndex2(object):
 
         .. code-block:: python
 
+		from ndex2.nice_cx_network import NiceCXNetwork
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
+
 		# Query the network from my NDEx account, get small subset
-		query_result_cx=my_ndex.get_neighborhood('c9243cce-2d32-11e8-b939-0ac135e8bacf','XRN1')
+		query_result_cx=my_ndex.get_neighborhood('INSERT NETWORK UUID HERE','INSERT NODE NAME HERE')
 
 		#find out the number of nodes and edges in the subset
 		for aspect in query_result_cx:
@@ -683,8 +726,14 @@ class Ndex2(object):
 
         .. code-block:: python
 
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
+
 		#search network by key word 'tutorial', return a list of networks with network summary
-		list_networks=my_ndex.search_networks('tutorial')
+		list_networks=my_ndex.search_networks('INSERT KEY WORD HERE')
 
 		print("%s netwoks found." % (len(list_networks)))
 		print ("Network names and uuids:")
@@ -749,7 +798,14 @@ class Ndex2(object):
 
         .. code-block:: python
 
-		new_summary=my_ndex.get_network_summary('c9243cce-2d32-11e8-b939-0ac135e8bacf')
+		from ndex2.nice_cx_network import NiceCXNetwork
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
+
+		new_summary=my_ndex.get_network_summary('INSERT NETWORK UUID HERE')
 		 
 		if new_summary.get("isValid"):
 			print("New network has been validated by the server.")
@@ -801,7 +857,14 @@ class Ndex2(object):
 
         .. code-block:: python
 
-		network_id = "ENTER YOUR NETWORK ID"
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
+
+
+		network_id = "INSERT NETWORK UUID HERE"
 		my_ndex.make_network_public("network_id")
 
 		#the following methods check the visibility of the network
@@ -849,7 +912,14 @@ class Ndex2(object):
 
         .. code-block:: python
 
-		network_id = "ENTER THE NETWORK ID WHICH IS IN MY ACCOUNT"
+		from ndex2.nice_cx_network import NiceCXNetwork
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
+
+		network_id = "INSERT NETWORK UUID HERE"
 		my_ndex.make_network_private(network_id)
 
 		#the following methods check the visibility of the network
@@ -875,7 +945,13 @@ class Ndex2(object):
 
 	.. code-block:: python
 
-		task_id = 'Insert Task Id Here'
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
+
+		task_id = 'INSERT TASK ID HERE'
 		task = my_ndex.get_task_by_id(task_id)
 		print(task)
 
@@ -895,16 +971,23 @@ class Ndex2(object):
         Deletes the specified network from the server
 
         .. code-block:: python
-            
+            	
+		from ndex2.nice_cx_network import NiceCXNetwork
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
+
 		# Query the network from my NDEx account, get a small subset
-		query_result_cx=my_ndex.get_neighborhood('c9243cce-2d32-11e8-b939-0ac135e8bacf','XRN1')
+		query_result_cx=my_ndex.get_neighborhood('INSERT NETWORK UUID HERE','ENTER NODE NAME HERE')
 
 		#find the subset uuid
 		uri_subset = my_ndex.save_new_network(query_result_cx)
 		uuid_subset = uri_subset.rpartition('/')[-1]
 
 		#get all the network ids in my account, this method returns a list of uuids
-		list_uuid = my_ndex.get_network_ids_for_user("ENTER YOUR USER")
+		list_uuid = my_ndex.get_network_ids_for_user("ENTER YOUR USERNAME HERE")
 
 		# using a loop to go though the list of uuids, 
 		#and delete all the networks except the subset just queried
@@ -947,7 +1030,13 @@ class Ndex2(object):
 
         .. code-block:: python
          
-            my_ndex.get_provenance('c9243cce-2d32-11e8-b939-0ac135e8bacf') 
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
+
+            my_ndex.get_provenance('INSERT NETWORK UUID HERE') 
 
         .. warning::
 
@@ -996,7 +1085,13 @@ class Ndex2(object):
 
         .. code-block:: python
 
-		network_id = 'ENTER THE NETWORK ID WHICH IS IN MY ACCOUNT'
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
+
+		network_id = 'INSERT NETWORK UUID'
 
 		#set network to read only
 		my_ndex.set_read_only(network_id, True)
@@ -1023,7 +1118,13 @@ class Ndex2(object):
 	
 	.. code-block:: python
 
-		network_id = 'ENTER THE NETWORK ID WHICH IS IN MY ACCOUNT'
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
+
+		network_id = 'INSERT NETWORK UUID HERE'
 
 		#the preoperties are set as a list of value pairs
 		network_properties = [("isReadOnly",True),
@@ -1069,7 +1170,14 @@ class Ndex2(object):
 	
 	.. code-block:: python
 
-		network_id = 'ENTER THE NETWORK ID WHICH IS IN MY ACCOUNT'
+		from ndex2.nice_cx_network import NiceCXNetwork
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
+
+		network_id = 'INSERT NETWORK UUID HERE'
 
 		#check the network properties before set value
 		print(my_ndex.get_network_summary(network_id))
@@ -1111,10 +1219,16 @@ class Ndex2(object):
 
         .. code-block:: python
 
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
+
 		#note: cannot use this method to update visibility，
 		#Please use make_network_public/private function to set network visibility.
 		#Also can use set_network_properties() to set visibility
-		network_id = "ENTER THE NETWORK ID WHICH IS IN MY ACCOUNT"
+		network_id = "INSERT NETWORK UUID HERE"
 		network_profile={"name":"My Network", 
 				 "description":"learn from Tutorial"}
 		my_ndex.update_network_profile(network_id, network_profile)   
@@ -1158,8 +1272,14 @@ class Ndex2(object):
 
 	.. code-block:: python
 
-		groupid = 'Insert User ID Here'
-		networkid = 'Insert to Network IDs Here'
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
+
+		groupid = 'INSERT USER ID HERE'
+		networkid = 'INSERT NETWORK UUID HERE'
 		#permission can be changed to other things
 		my_ndex.update_network_group_permission(groupid, networkid, permission='READ')
 
@@ -1181,8 +1301,14 @@ class Ndex2(object):
 	
 	.. code-block:: python
 	
-		userid = 'Insert User ID Here'
-		networkid = 'Insert to Network IDs Here'
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
+
+		userid = 'INSERT USER ID HERE'
+		networkid = 'INSERT NETWORK UUID HERE'
 		#permission can be changed to other things
 		my_ndex.update_network_user_permission(userid, networkid, permission='READ'
 
@@ -1204,15 +1330,21 @@ class Ndex2(object):
 	
 	.. code-block:: python
 
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
+
 		#find the group id by the username
-		user = "ENTER THE USER"
+		user = "INSERT YOUR USERNAME HERE"
 		group_ids = [g.gr_gid for g in grp.getgrall() if user in g.gr_mem]
 		gid = pwd.getpwnam(user).pw_gid
 		group_ids.append(grp.getgrgid(gid).gr_gid)
 		print (group_ids)
 
 		group_id = group_ids[0]
-		network_ids = 'ENTER THE NETWORK ID'
+		network_ids = 'ENTER THE NETWORK ID HERE'
 		#permission can be changed to edit
 		my_ndex.grant_networks_to_group(group_id, network_ids, permission=READ)
 
@@ -1234,6 +1366,12 @@ class Ndex2(object):
         Gets the user id by user name
 
         .. code-block:: python
+
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
 
 		print("Please enter your user name:")
 		name = input()
@@ -1281,6 +1419,12 @@ class Ndex2(object):
 
 	.. code-block:: python
 	
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
+
 		username = "ENTER YOUR USER"
 		#offset is how far you start looking for user network summaries
 		#limit is the most networks you want to see
@@ -1322,9 +1466,15 @@ class Ndex2(object):
 
         .. code-block:: python
 
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
+
 		#For all networks in the current account, display a list of newtwork summaries 
-		#network_list = my_ndex.get_network_summaries_for_user("ENTER YOUR USER")
-		network_list = my_ndex.get_network_summaries_for_user("ENTER YOUR USER")
+		#network_list = my_ndex.get_network_summaries_for_user("ENTER YOUR USERNAME HERE")
+		network_list = my_ndex.get_network_summaries_for_user("ENTER YOUR USERNAME HERE")
 
 		#below is an empty array to store all uuids of the networks
 		uuid_list = []
@@ -1341,8 +1491,8 @@ class Ndex2(object):
 		#You may find that this method returns the same result as 
 		#the sample under the method get_network_summaries_for_user(account_name)
 
-		#list_uuid = my_ndex.get_network_ids_for_user("ENTER YOUR USER")
-		my_ndex.get_network_ids_for_user("ENTER YOUR USER")
+		#list_uuid = my_ndex.get_network_ids_for_user("ENTER YOUR USERNAME HERE")
+		my_ndex.get_network_ids_for_user("ENTER YOUR USERNAME HERE")
 
         :param username: users NDEx username
         :type username: str
@@ -1358,9 +1508,16 @@ class Ndex2(object):
 
 	.. code-block:: python
 		
-		username = "Insert Username Here"
-		network_id = 'Insert Network UUID Here'
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
+
+		username = "INSERT USERNAME HERE"
+		network_id = 'INSERT NETWORK UUID HERE'
 		my_ndex.grant_network_to_user_by_username(username, network_id, permission = "READ")
+
         :param username: User name
         :type username: string
         :param network_id: Network id
@@ -1379,8 +1536,14 @@ class Ndex2(object):
 
 	.. code-block:: python
 
-		userid = 'Insert User ID HERE'
-		networkids = 'Insert Network IDs Here'
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
+
+		userid = 'INSERT USERNAME HERE'
+		networkids = 'INSERT NETWORK UUID HERE'
 		my_ndex.grant_networks_to_user(userid, networkids, permission="READ")	
 
         :param userid: User id
@@ -1401,6 +1564,12 @@ class Ndex2(object):
         Updates the admin status
 
         .. code-block:: python
+
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
 
             try:
                 my_ndex=nc.Ndex2("http://public.ndexbio.org", my_account, my_password)
@@ -1425,6 +1594,12 @@ class Ndex2(object):
         Creates a new network set
 
 	.. code-block:: python
+
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
 
 		#create an empty network set in my account set_name is unique. The following code can only run once. 
 		#You have to change the set name if want to retry the code
@@ -1455,7 +1630,13 @@ class Ndex2(object):
 	
 	.. code-block:: python
 
-		set_id = 'ENTER SET ID'
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
+
+		set_id = 'INSERT SET UUID HERE'
 
 		#this method returns a dict of the set information
 		network_set = my_ndex.get_network_set(set_id)
@@ -1480,7 +1661,13 @@ class Ndex2(object):
 	
 	.. code-block:: python
 
-		set_id = 'ENTER SET ID'
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
+
+		set_id = 'INSERT SET UUID HERE'
 
 		#the following codes return all the network ids in my account as a list
 		#then add the networks in the list to the set
@@ -1506,7 +1693,13 @@ class Ndex2(object):
 	
 	.. code-block:: python
 
-		set_id = 'ENTER SET ID'
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
+
+		set_id = 'INSERT SET UUID HERE'
 
 		#get information of the set, this method returns a dict 
 		network_set = my_ndex.get_network_set(set_id)
@@ -1561,7 +1754,13 @@ class Ndex2(object):
 
 	.. code-block:: python
 	
-		network_id = 'Insert Network UUID Here'
+		import ndex2.client as nc
+		import ndex2
+		import networkx as nx
+		import pandas as pd
+		import os
+
+		network_id = 'INSERT NETWORK UUID HERE'
 		sample_network = my_ndex.get_sample_network(network_id)
 		print(sample_network)
 
